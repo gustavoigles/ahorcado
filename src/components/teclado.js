@@ -3,16 +3,37 @@ import { useState } from "react"
 export default function Teclado({ correctas, incorrectas, revisa }){
 
     const style1={
-        backgroundColor:"green",
+        backgroundColor:"rgb(117 202 121)",
         borderRadius:"5px",
+        border: "none",
+        width:"40px",
+        height:"45px",
+        color: "white",
+        margin: '3px',
+        fontWeight: 'bolder',
+        padding: '10px'
     }
     const style2={
-        backgroundColor:"red",
+        backgroundColor:"#f87b7b",
+        pointerEvents: 'none',
         borderRadius:"5px",
+        border: "none",
+        width:"40px",
+        color: "white",
+        height:"45px",
+        fontWeight: 'bolder',
+        margin: '3px'
     }
     const style3={
-        backgroundColor:"grey",
+        backgroundColor:"#e2e8f0",
         borderRadius:"5px",
+        border: "none",
+        width:"40px",
+        height:"45px",
+        fontWeight: 'bolder',
+        margin: '3px',
+        color: 'black',
+        cursor: 'pointer'
     }
 
     const[teclas1, setTeclas1] = useState(["Q","W","E","R","T","Y","U","I","O","P"]); 
@@ -44,7 +65,7 @@ export default function Teclado({ correctas, incorrectas, revisa }){
 
 
     return(
-        <div style={{marginTop: '1rem'}}>
+        <div style={{marginTop: '2rem'}}>
            <div>{teclas1.map((item)=>(<button key={item} style={styles(item)} onClick={(event) => revisar2(event.target.textContent)}>{item}</button>))}</div>
            <div>{teclas2.map((item)=>(<button key={item} style={styles(item)} onClick={(event) => revisar2(event.target.textContent)}>{item}</button>))}</div>
            <div>{teclas3.map((item)=>(<button key={item} style={styles(item)} onClick={(event) => revisar2(event.target.textContent)}>{item}</button>))}</div> 

@@ -1,28 +1,36 @@
 
 export default function Container1 ({ letrasData, nivel, contain }) {
     const estilo1 = {
-      backgroundColor: 'black',
-      width: '30px',
-      height: '30px',
+      backgroundColor: '#000000c4',
+      width: '50px',
+      height: '50px',
       verticalAlign: 'middle',
       borderRadius: '5px',
-      margin: '1px'
+      margin: '3px',
+      border: '2px solid rgb(74 74 74)',
     }
     const estilo2 = {
       ...estilo1,
       backgroundColor: 'white',
+      border: '2px solid rgb(224, 224, 224)',
     }
     const estilo3 = {
       ...estilo1,
       color: 'white',
       fontWeight: 'bold',
-      backgroundColor: 'green',
+      backgroundColor: '#43a047',
+      border: '2px solid #43a047',
+      fontSize: '2rem',
+      textAlign: 'center',
+      lineHeight: '50px',
       transition: '.3s ease',
     }
   
     const cambiarColor1 = {
-      backgroundColor: 'ORANGE'
+      ...estilo2,
+      border: '2px solid orange'
     }
+
     const cambiarColor2 = {
       backgroundColor: 'grey'
     }
@@ -50,6 +58,14 @@ export default function Container1 ({ letrasData, nivel, contain }) {
         return cambiarColor1
       }
     }
+
+    const getStyle = (letra) => {
+      if(!letra) return estilo1
+      if(letra.isGuessed) return estilo3
+      if(letra?.wordId === nivel) return cambiarColor1 
+
+      return estilo2
+    }
   
     return (
       <div>
@@ -58,12 +74,11 @@ export default function Container1 ({ letrasData, nivel, contain }) {
             <tr>
               {letrasData.map((letra, index) => (
                 <td
-                  style={letra?.wordId === nivel ? cambiarColor1 : null}
                   key={index}
                 >
-                  <button style={!letra ? estilo1 : !letra?.isGuessed ? estilo2 : estilo3}>
+                  <div style={getStyle(letra)} >
                     {letra?.isGuessed ? letra.letter.toUpperCase() : ''}
-                  </button>
+                  </div>
                 </td>
               ))}
             </tr>

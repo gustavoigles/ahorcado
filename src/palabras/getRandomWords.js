@@ -1,11 +1,12 @@
 import data from './words.json'
 
+const MAX_IDX = 7;
 const WORD_SIZE = 6
 const MIN_WORD_LENGTH = 4
-const MAX_WORD_LENGTH = 5
+const MAX_WORD_LENGTH = 8
 
 //get random words. w represent word, l letter.
-export async function getRandomWords () {
+export async function getRandomWords (VERTICAL_IDX) {
   //randomize array.
   shuffle(data)
   let words = []
@@ -22,7 +23,8 @@ export async function getRandomWords () {
         w.includes(letter) &&
         w.length >= MIN_WORD_LENGTH &&
         w.length <= MAX_WORD_LENGTH &&
-        !words.includes(w)
+        fitsOnArray(letter, w, VERTICAL_IDX) && 
+        !words.includes(w) 
     )
 
     words.push(word)
@@ -49,4 +51,16 @@ function shuffle (array) {
   }
 
   return array
+}
+
+//check if current word will fir on the array.
+const fitsOnArray = (letter, w, VERTICAL_IDX) => {
+  const [before, after] = w.split(letter);
+  const firstLetterOffset = VERTICAL_IDX - before.length
+
+  if(firstLetterOffset < 0) {
+    return false
+  }
+
+  return (firstLetterOffset + w.length) <= MAX_IDX 
 }

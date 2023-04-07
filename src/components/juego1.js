@@ -3,11 +3,11 @@ import Container1 from './container1'
 import Teclado from './teclado'
 import { getRandomWords } from '../palabras/getRandomWords'
 
-const VERTICAL_IDX = 4
+const VERTICAL_IDX = Math.floor(Math.random() * 4) + 2;
 
 export default function Juego1 () {
   //Define mainArray state. Is an Array whit 6 arrays (for words) whit 9 positions for the letters, starting as null value
-  const [mainArray, setMainArray] = useState(Array(6).fill(Array(9).fill(null)))
+  const [mainArray, setMainArray] = useState(Array(6).fill(Array(8).fill(null)))
   
   const [letrasCorrectas, setLetrasCorrectas] = useState([])
   const [letrasIncorrectas, setLetrasIncorrectas] = useState([])
@@ -22,8 +22,7 @@ export default function Juego1 () {
 
   const getWords = async () => {
     //get words
-    const words = await getRandomWords()
-
+    const words = await getRandomWords(VERTICAL_IDX)
     //split first word string into array
     let currentWordArr = [...words[0]]
 
@@ -179,7 +178,7 @@ export default function Juego1 () {
         </div>
         <div
           style={{
-            margin: '1rem',
+            marginTop: '4rem',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center'
