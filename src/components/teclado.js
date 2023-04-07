@@ -39,13 +39,12 @@ export default function Teclado({ correctas, incorrectas, revisa }){
         if(correctas.includes(item)===false && incorrectas.includes(item)===false){
             revisa(item);
         }
-    
     }
 
 
 
     return(
-        <div>
+        <div style={{marginTop: '1rem'}}>
            <div>{teclas1.map((item)=>(<button key={item} style={styles(item)} onClick={(event) => revisar2(event.target.textContent)}>{item}</button>))}</div>
            <div>{teclas2.map((item)=>(<button key={item} style={styles(item)} onClick={(event) => revisar2(event.target.textContent)}>{item}</button>))}</div>
            <div>{teclas3.map((item)=>(<button key={item} style={styles(item)} onClick={(event) => revisar2(event.target.textContent)}>{item}</button>))}</div> 
